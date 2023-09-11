@@ -21,7 +21,6 @@ func GetPurchases(item string) ([]string, []string, error) {
 	return ParsePurchases(res.Body)
 }
 
-
 func ParsePurchases(r io.Reader) ([]string, []string, error) {
 	// Решил передавать два массива вместо структуры, потому что
 	// показалось, что если еще создавать массив структур с двумя
@@ -36,20 +35,19 @@ func ParsePurchases(r io.Reader) ([]string, []string, error) {
 	// необходимое значение для задачи
 	p := bluemonday.StrictPolicy()
 
-	for scanner.Scan() { 
+	for scanner.Scan() {
 		t := scanner.Text()
-		if strings.Contains(t,"row-procedure_number") {
+		if strings.Contains(t, "row-procedure_number") {
 			purchaseID = append(purchaseID, strings.TrimSpace(p.Sanitize(t)))
 		}
-		if strings.Contains(t,"row-procedure_name") {
-			index := strings.Index(t,"</a>")
+		if strings.Contains(t, "row-procedure_name") {
+			index := strings.Index(t, "</a>")
 			purchaseName = append(purchaseName, strings.TrimSpace(p.Sanitize(t[:index])))
 		}
 	}
-	if len(purchaseID)==0 || len(purchaseName)==0 {
+	if len(purchaseID) == 0 || len(purchaseName) == 0 {
 		return nil, nil, gen_err.FailedToParseTenders
 	}
 
 	return purchaseID, purchaseName, nil
 }
-

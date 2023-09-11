@@ -20,7 +20,7 @@ func main() {
 	scanner.Split(bufio.ScanLines)
 	// Так как каждый новое ключевой слово начинается с новой
 	// строки, мы построчно читаем из файла и выводим найденные тендеры
-	for scanner.Scan() { 
+	for scanner.Scan() {
 		item := scanner.Text()
 		purchasesID, purchasesName, err := fabrikant.GetPurchases(item)
 		if err != nil {
@@ -32,9 +32,9 @@ func main() {
 }
 
 func printTendersOfItem(item string, purchasesID, purchasesName []string) {
-	fmt.Printf("Item: %s\n\n",item)
+	fmt.Printf("Item: %s\n\n", item)
 	for i := range purchasesID {
-		fmt.Printf("ID: %s\n",purchasesID[i])
-		fmt.Printf("Name: %s\n\n",purchasesName[i])
+		fmt.Printf("ID: %s\n", purchasesID[i])
+		fmt.Printf("Name: %s\n\n", purchasesName[i])
 	}
 }

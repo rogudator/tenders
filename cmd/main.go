@@ -18,7 +18,7 @@ func main() {
 	defer list.Close()
 	scanner := bufio.NewScanner(list)
 	scanner.Split(bufio.ScanLines)
-	// Так как каждый новое ключевой слово начинается с новой
+	// Так как каждое новое ключевое слово начинается с новой
 	// строки, мы построчно читаем из файла и выводим найденные тендеры
 	for scanner.Scan() { 
 		item := scanner.Text()

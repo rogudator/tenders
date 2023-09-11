@@ -32,9 +32,9 @@ func main() {
 }
 
 func printTendersOfItem(item string, purchasesID, purchasesName []string) {
-	fmt.Println(item)
+	fmt.Printf("Item: %s\n\n",item)
 	for i := range purchasesID {
-		fmt.Println(purchasesID[i])
-		fmt.Println(purchasesName[i])
+		fmt.Printf("ID: %s\n",purchasesID[i])
+		fmt.Printf("Name: %s\n\n",purchasesName[i])
 	}
 }
